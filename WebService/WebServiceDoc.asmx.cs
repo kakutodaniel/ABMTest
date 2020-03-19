@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.IO;
 using System.Web.Services;
+using System.Xml.Serialization;
 
 namespace WebService
 {
@@ -18,9 +16,22 @@ namespace WebService
     {
 
         [WebMethod]
-        public string HelloWorld()
+        public string HelloWorld(string xml)
         {
-            return "Hello World";
+            var serializer = new XmlSerializer(typeof(InputDocument));
+            InputDocument doc;
+
+            using (var reader = new StringReader(xml))
+            {
+                doc = (InputDocument)(serializer.Deserialize(reader));
+            }
+
+            return doc.DeclarationList.Declaration.Command.ToLower() != "default"
+                ? "-1"
+                : doc.DeclarationList.Declaration.DeclarationHeader.SiteID.ToLower() != "dub"
+                ? "-2"
+                : "0";
         }
     }
+
 }

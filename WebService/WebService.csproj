@@ -71,6 +71,7 @@
     <Content Include="WebServiceDoc.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebServiceDoc.asmx.cs">
       <DependentUpon>WebServiceDoc.asmx</DependentUpon>
