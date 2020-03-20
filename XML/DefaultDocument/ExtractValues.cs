@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace XML.DefaultDocument
 {
@@ -13,28 +13,39 @@ namespace XML.DefaultDocument
             this.XML = xml;
         }
 
-        public BaseResponse<string> ExtractTextFromCodes(string[] refCodes)
+        public BaseResponse<Dictionary<string,string>> ExtractTextFromCodes(string[] refCodes)
         {
-            var response = new BaseResponse<string>();
+            var response = new BaseResponse<Dictionary<string, string>>();
 
             try
             {
                 var parse = BaseXMLMethods<InputDocument>.Deserialize(this.XML);
-
-                var res = new StringBuilder();
+                var res = new Dictionary<string, string>();
 
                 if (parse != null)
                 {
-                    parse.DeclarationList.Declaration.DeclarationHeader.Reference
-                            .Where(x => refCodes.Contains(x.RefCode))
-                            .ToList()
-                            .ForEach(y => res.Append($"{y.RefCode}: {y.RefText}{Environment.NewLine}"));
+                    parse.DeclarationList.ToList()
+                        .ForEach(x =>
+                        {
+                            x.DeclarationHeader.Reference.Where(y => refCodes.Contains(y.RefCode)).ToList()
+                            .ForEach(z =>
+                            {
+                                if (!res.ContainsKey(z.RefCode))
+                                {
+                                    res.Add(z.RefCode, z.RefText);
+                                }
+                                else
+                                {
+                                    res[z.RefCode] += $", {z.RefText}";
+                                }
+                            });
+                        });
 
-                    response.SetSuccess(res.ToString());
+                    response.SetSuccess(res);
                 }
                 else
                 {
-                    response.SetSuccess("object is null!");
+                    response.SetSuccess(null);
                 }
 
             }

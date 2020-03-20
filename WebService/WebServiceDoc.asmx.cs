@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Web.Services;
 using System.Xml.Serialization;
+using System.Linq;
 
 namespace WebService
 {
@@ -26,12 +27,18 @@ namespace WebService
                 doc = (InputDocument)(serializer.Deserialize(reader));
             }
 
-            return doc.DeclarationList.Declaration.Command.ToLower() != "default"
+            return doc.DeclarationList.Any(x => x.Command.ToLower() != "default")
                 ? "-1"
-                : doc.DeclarationList.Declaration.DeclarationHeader.SiteID.ToLower() != "dub"
+                : doc.DeclarationList.Any(x => x.DeclarationHeader.SiteID.ToLower() != "dub")
                 ? "-2"
                 : "0";
         }
+
+        //TODO: using enum ??
+        //TODO: create common lib for deserialize
+        //TODO: comment functions
+        //TODO: change method name (HelloWorld)
+
     }
 
 }

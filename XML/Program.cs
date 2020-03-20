@@ -1,5 +1,6 @@
 ﻿using System;
 using XML.DefaultDocument;
+using System.Collections.Generic;
 
 namespace XML
 {
@@ -10,7 +11,7 @@ namespace XML
             var xml = @"
                 <InputDocument>
                   <DeclarationList>
-                    <Declaration Command='DEFAULT' Version='5.13'/>
+                    <Declaration Command='DEFAULT' Version='5.13'>
                       <DeclarationHeader>
                         <Jurisdiction>IE</Jurisdiction>
                         <CWProcedure>IMPORT</CWProcedure>
@@ -49,6 +50,19 @@ namespace XML
                         <Country CodeType='NUM' CountryType='Dispatch'>CN</Country>
                        </DeclarationHeader>
                       </Declaration>
+                    <Declaration Command='DEFAULT' Version='5.13'>
+                      <DeclarationHeader>
+                        <Reference RefCode='MWB'>
+                          <RefText>111</RefText>
+                        </Reference>
+                        <Reference RefCode='CAR'>
+                          <RefText>222</RefText>
+                        </Reference>
+                        <Reference RefCode='TRV'>
+                          <RefText>333</RefText>
+                        </Reference>
+                       </DeclarationHeader>
+                      </Declaration>
                     </DeclarationList>
                 </InputDocument>";
 
@@ -63,7 +77,21 @@ namespace XML
             }
             else
             {
-                Console.WriteLine(res.Response);
+                if (res.Response == null)
+                {
+                    Console.WriteLine("response is null!");
+                }
+                else
+                {
+                    var print = "";
+
+                    foreach (var entry in res.Response)
+                    {
+                        print += $"{entry.Key}: {entry.Value}{Environment.NewLine}";
+                    }
+
+                    Console.WriteLine(print);
+                }
             }
 
             Console.ReadKey();

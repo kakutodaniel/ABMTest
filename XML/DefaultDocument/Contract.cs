@@ -1,5 +1,6 @@
 ﻿namespace XML.DefaultDocument
 {
+
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -7,10 +8,11 @@
     public partial class InputDocument
     {
 
-        private InputDocumentDeclarationList declarationListField;
+        private InputDocumentDeclaration[] declarationListField;
 
         /// <remarks/>
-        public InputDocumentDeclarationList DeclarationList
+        [System.Xml.Serialization.XmlArrayItemAttribute("Declaration", IsNullable = false)]
+        public InputDocumentDeclaration[] DeclarationList
         {
             get
             {
@@ -25,38 +27,17 @@
 
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class InputDocumentDeclarationList
+    public partial class InputDocumentDeclaration
     {
 
-        private InputDocumentDeclarationListDeclaration declarationField;
-
-        /// <remarks/>
-        public InputDocumentDeclarationListDeclaration Declaration
-        {
-            get
-            {
-                return this.declarationField;
-            }
-            set
-            {
-                this.declarationField = value;
-            }
-        }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class InputDocumentDeclarationListDeclaration
-    {
-
-        private InputDocumentDeclarationListDeclarationDeclarationHeader declarationHeaderField;
+        private InputDocumentDeclarationDeclarationHeader declarationHeaderField;
 
         private string commandField;
 
         private decimal versionField;
 
         /// <remarks/>
-        public InputDocumentDeclarationListDeclarationDeclarationHeader DeclarationHeader
+        public InputDocumentDeclarationDeclarationHeader DeclarationHeader
         {
             get
             {
@@ -99,7 +80,7 @@
 
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class InputDocumentDeclarationListDeclarationDeclarationHeader
+    public partial class InputDocumentDeclarationDeclarationHeader
     {
 
         private string jurisdictionField;
@@ -114,9 +95,9 @@
 
         private string accountCodeField;
 
-        private InputDocumentDeclarationListDeclarationDeclarationHeaderReference[] referenceField;
+        private InputDocumentDeclarationDeclarationHeaderReference[] referenceField;
 
-        private InputDocumentDeclarationListDeclarationDeclarationHeaderCountry[] countryField;
+        private InputDocumentDeclarationDeclarationHeaderCountry[] countryField;
 
         /// <remarks/>
         public string Jurisdiction
@@ -198,7 +179,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Reference")]
-        public InputDocumentDeclarationListDeclarationDeclarationHeaderReference[] Reference
+        public InputDocumentDeclarationDeclarationHeaderReference[] Reference
         {
             get
             {
@@ -212,7 +193,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Country")]
-        public InputDocumentDeclarationListDeclarationDeclarationHeaderCountry[] Country
+        public InputDocumentDeclarationDeclarationHeaderCountry[] Country
         {
             get
             {
@@ -227,7 +208,7 @@
 
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class InputDocumentDeclarationListDeclarationDeclarationHeaderReference
+    public partial class InputDocumentDeclarationDeclarationHeaderReference
     {
 
         private string refTextField;
@@ -264,7 +245,7 @@
 
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class InputDocumentDeclarationListDeclarationDeclarationHeaderCountry
+    public partial class InputDocumentDeclarationDeclarationHeaderCountry
     {
 
         private string codeTypeField;
@@ -315,8 +296,6 @@
             }
         }
     }
-
-
 
 
 }

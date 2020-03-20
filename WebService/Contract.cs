@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace WebService
+﻿namespace WebService
 {
 
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
@@ -13,10 +8,11 @@ namespace WebService
     public partial class InputDocument
     {
 
-        private InputDocumentDeclarationList declarationListField;
+        private InputDocumentDeclaration[] declarationListField;
 
         /// <remarks/>
-        public InputDocumentDeclarationList DeclarationList
+        [System.Xml.Serialization.XmlArrayItemAttribute("Declaration", IsNullable = false)]
+        public InputDocumentDeclaration[] DeclarationList
         {
             get
             {
@@ -31,38 +27,17 @@ namespace WebService
 
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class InputDocumentDeclarationList
+    public partial class InputDocumentDeclaration
     {
 
-        private InputDocumentDeclarationListDeclaration declarationField;
-
-        /// <remarks/>
-        public InputDocumentDeclarationListDeclaration Declaration
-        {
-            get
-            {
-                return this.declarationField;
-            }
-            set
-            {
-                this.declarationField = value;
-            }
-        }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class InputDocumentDeclarationListDeclaration
-    {
-
-        private InputDocumentDeclarationListDeclarationDeclarationHeader declarationHeaderField;
+        private InputDocumentDeclarationDeclarationHeader declarationHeaderField;
 
         private string commandField;
 
         private decimal versionField;
 
         /// <remarks/>
-        public InputDocumentDeclarationListDeclarationDeclarationHeader DeclarationHeader
+        public InputDocumentDeclarationDeclarationHeader DeclarationHeader
         {
             get
             {
@@ -105,7 +80,7 @@ namespace WebService
 
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class InputDocumentDeclarationListDeclarationDeclarationHeader
+    public partial class InputDocumentDeclarationDeclarationHeader
     {
 
         private string jurisdictionField;
@@ -198,5 +173,6 @@ namespace WebService
             }
         }
     }
+
 
 }
