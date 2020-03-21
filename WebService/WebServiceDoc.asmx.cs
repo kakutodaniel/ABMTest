@@ -1,7 +1,7 @@
-﻿using System.IO;
-using System.Web.Services;
-using System.Xml.Serialization;
+﻿using System.Web.Services;
 using System.Linq;
+using System.Web.Services.Protocols;
+using System.Xml;
 
 namespace WebService
 {
@@ -9,7 +9,7 @@ namespace WebService
     /// Summary description for WebServiceDoc
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
-    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [WebServiceBinding(ConformsTo = WsiProfiles.None)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
@@ -17,27 +17,36 @@ namespace WebService
     {
 
         [WebMethod]
-        public string HelloWorld(string xml)
+        [SoapDocumentMethod(ParameterStyle = SoapParameterStyle.Bare)]
+        public string CheckOut(XmlElement input)
         {
-            var serializer = new XmlSerializer(typeof(InputDocument));
-            InputDocument doc;
+            var declarationTags = input.GetElementsByTagName("Declaration").Cast<XmlNode>();
 
-            using (var reader = new StringReader(xml))
+            foreach (var item in declarationTags)
             {
-                doc = (InputDocument)(serializer.Deserialize(reader));
+                if (item.Attributes["Command"] == null)
+                {
+                    continue;
+                }
+
+                if (item.Attributes["Command"].Value.ToLower() != "default")
+                {
+                    return "-1";
+                }
             }
 
-            return doc.DeclarationList.Any(x => x.Command.ToLower() != "default")
-                ? "-1"
-                : doc.DeclarationList.Any(x => x.DeclarationHeader.SiteID.ToLower() != "dub")
-                ? "-2"
-                : "0";
-        }
+            var siteTags = input.GetElementsByTagName("SiteID");
 
-        //TODO: using enum ??
-        //TODO: create common lib for deserialize
-        //TODO: comment functions
-        //TODO: change method name (HelloWorld)
+            var existsDiffSites = siteTags.Cast<XmlNode>()
+                .Any(y => y.InnerText.ToLower() != "dub");
+
+            if (existsDiffSites)
+            {
+                return "-2";
+            }
+
+            return "0";
+        }
 
     }
 

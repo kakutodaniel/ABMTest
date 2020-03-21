@@ -43,10 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseXMLMethods.cs" />
-    <Compile Include="BaseResponse.cs" />
-    <Compile Include="DefaultDocument\Contract.cs" />
-    <Compile Include="DefaultDocument\ExtractValues.cs" />
+    <Compile Include="ExtractValues.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

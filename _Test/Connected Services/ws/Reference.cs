@@ -15,45 +15,29 @@ namespace _Test.ws {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ws.WebServiceDocSoap")]
     public interface WebServiceDocSoap {
         
-        // CODEGEN: Generating message contract since element name xml from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
-        _Test.ws.HelloWorldResponse HelloWorld(_Test.ws.HelloWorldRequest request);
+        // CODEGEN: Generating message contract since the operation CheckOut is neither RPC nor document wrapped.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckOut", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        _Test.ws.CheckOutResponse CheckOut(_Test.ws.CheckOutRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
-        System.Threading.Tasks.Task<_Test.ws.HelloWorldResponse> HelloWorldAsync(_Test.ws.HelloWorldRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckOut", ReplyAction="*")]
+        System.Threading.Tasks.Task<_Test.ws.CheckOutResponse> CheckOutAsync(_Test.ws.CheckOutRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class HelloWorldRequest {
+    public partial class CheckOutRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorld", Namespace="http://tempuri.org/", Order=0)]
-        public _Test.ws.HelloWorldRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Xml.XmlElement input;
         
-        public HelloWorldRequest() {
+        public CheckOutRequest() {
         }
         
-        public HelloWorldRequest(_Test.ws.HelloWorldRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class HelloWorldRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string xml;
-        
-        public HelloWorldRequestBody() {
-        }
-        
-        public HelloWorldRequestBody(string xml) {
-            this.xml = xml;
+        public CheckOutRequest(System.Xml.XmlElement input) {
+            this.input = input;
         }
     }
     
@@ -61,33 +45,16 @@ namespace _Test.ws {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class HelloWorldResponse {
+    public partial class CheckOutResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorldResponse", Namespace="http://tempuri.org/", Order=0)]
-        public _Test.ws.HelloWorldResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string CheckOutResult;
         
-        public HelloWorldResponse() {
+        public CheckOutResponse() {
         }
         
-        public HelloWorldResponse(_Test.ws.HelloWorldResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class HelloWorldResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string HelloWorldResult;
-        
-        public HelloWorldResponseBody() {
-        }
-        
-        public HelloWorldResponseBody(string HelloWorldResult) {
-            this.HelloWorldResult = HelloWorldResult;
+        public CheckOutResponse(string CheckOutResult) {
+            this.CheckOutResult = CheckOutResult;
         }
     }
     
@@ -119,28 +86,26 @@ namespace _Test.ws {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        _Test.ws.HelloWorldResponse _Test.ws.WebServiceDocSoap.HelloWorld(_Test.ws.HelloWorldRequest request) {
-            return base.Channel.HelloWorld(request);
+        _Test.ws.CheckOutResponse _Test.ws.WebServiceDocSoap.CheckOut(_Test.ws.CheckOutRequest request) {
+            return base.Channel.CheckOut(request);
         }
         
-        public string HelloWorld(string xml) {
-            _Test.ws.HelloWorldRequest inValue = new _Test.ws.HelloWorldRequest();
-            inValue.Body = new _Test.ws.HelloWorldRequestBody();
-            inValue.Body.xml = xml;
-            _Test.ws.HelloWorldResponse retVal = ((_Test.ws.WebServiceDocSoap)(this)).HelloWorld(inValue);
-            return retVal.Body.HelloWorldResult;
+        public string CheckOut(System.Xml.XmlElement input) {
+            _Test.ws.CheckOutRequest inValue = new _Test.ws.CheckOutRequest();
+            inValue.input = input;
+            _Test.ws.CheckOutResponse retVal = ((_Test.ws.WebServiceDocSoap)(this)).CheckOut(inValue);
+            return retVal.CheckOutResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<_Test.ws.HelloWorldResponse> _Test.ws.WebServiceDocSoap.HelloWorldAsync(_Test.ws.HelloWorldRequest request) {
-            return base.Channel.HelloWorldAsync(request);
+        System.Threading.Tasks.Task<_Test.ws.CheckOutResponse> _Test.ws.WebServiceDocSoap.CheckOutAsync(_Test.ws.CheckOutRequest request) {
+            return base.Channel.CheckOutAsync(request);
         }
         
-        public System.Threading.Tasks.Task<_Test.ws.HelloWorldResponse> HelloWorldAsync(string xml) {
-            _Test.ws.HelloWorldRequest inValue = new _Test.ws.HelloWorldRequest();
-            inValue.Body = new _Test.ws.HelloWorldRequestBody();
-            inValue.Body.xml = xml;
-            return ((_Test.ws.WebServiceDocSoap)(this)).HelloWorldAsync(inValue);
+        public System.Threading.Tasks.Task<_Test.ws.CheckOutResponse> CheckOutAsync(System.Xml.XmlElement input) {
+            _Test.ws.CheckOutRequest inValue = new _Test.ws.CheckOutRequest();
+            inValue.input = input;
+            return ((_Test.ws.WebServiceDocSoap)(this)).CheckOutAsync(inValue);
         }
     }
 }

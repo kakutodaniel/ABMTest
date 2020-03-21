@@ -50,6 +50,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connected Services\ws\Reference.cs">
@@ -63,7 +64,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Connected Services\ws\WebServiceDoc.wsdl" />
-    <None Include="Connected Services\ws\_Test.ws.HelloWorldResponse.datasource">
+    <None Include="Connected Services\ws\_Test.ws.CheckOutResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="packages.config" />
