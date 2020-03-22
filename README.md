@@ -3,6 +3,7 @@
 ## Solution
 
 That solution has 4 projects as following:
+
 `1. Parse Project`
 * Console Application which, given the EDIFACT message text, parse out all `LOC` segments and populate an array with `2nd` and `3rd` element of each segment.
 * The `Edifact class` is where is the business rule. To instantiate it you must input a parameter, the `message text`, which will be parsed.
