@@ -15,7 +15,7 @@ namespace Parse
         private string Message { get; set; }
 
         /// <summary>
-        /// edifact message
+        /// public constructor
         /// </summary>
         /// <param name="message"></param>
         public Edifact(string message)
