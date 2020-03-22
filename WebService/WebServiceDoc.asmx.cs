@@ -18,7 +18,7 @@ namespace WebService
 
         [WebMethod]
         [SoapDocumentMethod(ParameterStyle = SoapParameterStyle.Bare)]
-        public string CheckOut(XmlElement input)
+        public string CheckXML(XmlDocument input)
         {
             var declarationTags = input.GetElementsByTagName("Declaration").Cast<XmlNode>();
 
@@ -37,8 +37,7 @@ namespace WebService
 
             var siteTags = input.GetElementsByTagName("SiteID");
 
-            var existsDiffSites = siteTags.Cast<XmlNode>()
-                .Any(y => y.InnerText.ToLower() != "dub");
+            var existsDiffSites = siteTags.Cast<XmlNode>().Any(y => y.InnerText.ToLower() != "dub");
 
             if (existsDiffSites)
             {

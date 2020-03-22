@@ -64,7 +64,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Connected Services\ws\WebServiceDoc.wsdl" />
-    <None Include="Connected Services\ws\_Test.ws.CheckOutResponse.datasource">
+    <None Include="Connected Services\ws\_Test.ws.CheckXMLResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="packages.config" />

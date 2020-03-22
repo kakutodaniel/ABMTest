@@ -6,18 +6,18 @@ namespace XML
 {
     public class ExtractValues
     {
-        private XmlElement XmlElement { get; set; }
+        private XmlDocument XmlDocument { get; set; }
 
-        public ExtractValues(XmlElement xml)
+        public ExtractValues(XmlDocument xml)
         {
-            this.XmlElement = xml;
+            this.XmlDocument = xml;
         }
 
         public Dictionary<string, string> ExtractTextFromCodes(string[] refCodes)
         {
             var res = new Dictionary<string, string>();
 
-            var references = this.XmlElement.GetElementsByTagName("Reference").Cast<XmlNode>();
+            var references = this.XmlDocument.GetElementsByTagName("Reference").Cast<XmlNode>();
 
             if (!references.Any())
             {

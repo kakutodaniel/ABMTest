@@ -15,28 +15,28 @@ namespace _Test.ws {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ws.WebServiceDocSoap")]
     public interface WebServiceDocSoap {
         
-        // CODEGEN: Generating message contract since the operation CheckOut is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckOut", ReplyAction="*")]
+        // CODEGEN: Generating message contract since the operation CheckXML is neither RPC nor document wrapped.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckXML", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        _Test.ws.CheckOutResponse CheckOut(_Test.ws.CheckOutRequest request);
+        _Test.ws.CheckXMLResponse CheckXML(_Test.ws.CheckXMLRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckOut", ReplyAction="*")]
-        System.Threading.Tasks.Task<_Test.ws.CheckOutResponse> CheckOutAsync(_Test.ws.CheckOutRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckXML", ReplyAction="*")]
+        System.Threading.Tasks.Task<_Test.ws.CheckXMLResponse> CheckXMLAsync(_Test.ws.CheckXMLRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class CheckOutRequest {
+    public partial class CheckXMLRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.Xml.XmlElement input;
+        public System.Xml.XmlNode input;
         
-        public CheckOutRequest() {
+        public CheckXMLRequest() {
         }
         
-        public CheckOutRequest(System.Xml.XmlElement input) {
+        public CheckXMLRequest(System.Xml.XmlNode input) {
             this.input = input;
         }
     }
@@ -45,16 +45,16 @@ namespace _Test.ws {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class CheckOutResponse {
+    public partial class CheckXMLResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string CheckOutResult;
+        public string CheckXMLResult;
         
-        public CheckOutResponse() {
+        public CheckXMLResponse() {
         }
         
-        public CheckOutResponse(string CheckOutResult) {
-            this.CheckOutResult = CheckOutResult;
+        public CheckXMLResponse(string CheckXMLResult) {
+            this.CheckXMLResult = CheckXMLResult;
         }
     }
     
@@ -86,26 +86,26 @@ namespace _Test.ws {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        _Test.ws.CheckOutResponse _Test.ws.WebServiceDocSoap.CheckOut(_Test.ws.CheckOutRequest request) {
-            return base.Channel.CheckOut(request);
+        _Test.ws.CheckXMLResponse _Test.ws.WebServiceDocSoap.CheckXML(_Test.ws.CheckXMLRequest request) {
+            return base.Channel.CheckXML(request);
         }
         
-        public string CheckOut(System.Xml.XmlElement input) {
-            _Test.ws.CheckOutRequest inValue = new _Test.ws.CheckOutRequest();
+        public string CheckXML(System.Xml.XmlNode input) {
+            _Test.ws.CheckXMLRequest inValue = new _Test.ws.CheckXMLRequest();
             inValue.input = input;
-            _Test.ws.CheckOutResponse retVal = ((_Test.ws.WebServiceDocSoap)(this)).CheckOut(inValue);
-            return retVal.CheckOutResult;
+            _Test.ws.CheckXMLResponse retVal = ((_Test.ws.WebServiceDocSoap)(this)).CheckXML(inValue);
+            return retVal.CheckXMLResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<_Test.ws.CheckOutResponse> _Test.ws.WebServiceDocSoap.CheckOutAsync(_Test.ws.CheckOutRequest request) {
-            return base.Channel.CheckOutAsync(request);
+        System.Threading.Tasks.Task<_Test.ws.CheckXMLResponse> _Test.ws.WebServiceDocSoap.CheckXMLAsync(_Test.ws.CheckXMLRequest request) {
+            return base.Channel.CheckXMLAsync(request);
         }
         
-        public System.Threading.Tasks.Task<_Test.ws.CheckOutResponse> CheckOutAsync(System.Xml.XmlElement input) {
-            _Test.ws.CheckOutRequest inValue = new _Test.ws.CheckOutRequest();
+        public System.Threading.Tasks.Task<_Test.ws.CheckXMLResponse> CheckXMLAsync(System.Xml.XmlNode input) {
+            _Test.ws.CheckXMLRequest inValue = new _Test.ws.CheckXMLRequest();
             inValue.input = input;
-            return ((_Test.ws.WebServiceDocSoap)(this)).CheckOutAsync(inValue);
+            return ((_Test.ws.WebServiceDocSoap)(this)).CheckXMLAsync(inValue);
         }
     }
 }

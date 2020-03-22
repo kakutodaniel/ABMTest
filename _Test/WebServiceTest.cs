@@ -15,7 +15,7 @@ namespace _Test
                             <CWProcedure>IMPORT</CWProcedure>
                             <DeclarationDestination>CUSTOMSWAREIE</DeclarationDestination>
                             <DocumentRef>71Q0019681</DocumentRef>
-                            <SiteID>DUB2</SiteID>
+                            <SiteID>DUB</SiteID>
                             <AccountCode>G0779837</AccountCode>
                           </DeclarationHeader>
                         </Declaration>
@@ -33,14 +33,15 @@ namespace _Test
                     </InputDocument>
                 ";
 
+
         [TestMethod]
         public void Test_Success()
         {
             var payload = string.Format(_payload, "DEFAULT", "DUB");
-            var el = GetXmlElement(payload);
+            var el = LoadXml(payload);
 
             var service = new ws.WebServiceDocSoapClient();
-            var result = service.CheckOut(el);
+            var result = service.CheckXML(el);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result == "0");
@@ -50,10 +51,10 @@ namespace _Test
         public void Test_Command_Different_Default()
         {
             var payload = string.Format(_payload, "DEFAULT999", "DUB");
-            var el = GetXmlElement(payload);
+            var el = LoadXml(payload);
 
             var service = new ws.WebServiceDocSoapClient();
-            var result = service.CheckOut(el);
+            var result = service.CheckXML(el);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result == "-1");
@@ -63,24 +64,22 @@ namespace _Test
         public void Test_Site_Different_Dub()
         {
             var payload = string.Format(_payload, "DEFAULT", "DUB999");
-            var el = GetXmlElement(payload);
+            var el = LoadXml(payload);
 
             var service = new ws.WebServiceDocSoapClient();
-            var result = service.CheckOut(el);
+            var result = service.CheckXML(el);
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result == "-2");
         }
 
-        private XmlElement GetXmlElement(string xml)
+        private XmlDocument LoadXml(string xml)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xml);
 
-            return doc.DocumentElement;
+            return doc;
         }
-
-       
 
     }
 }

@@ -76,6 +76,8 @@ namespace XML
                         <SiteID>DUB</SiteID>
                         <AccountCode>G0779837</AccountCode>
                         <Reference RefCode='MWB'>
+                            <RefText>1234</RefText>
+                            <RefText>5678</RefText>
                         </Reference>
                         <Reference RefCode='KEY'>
                           <RefText>DUB16049</RefText>
@@ -125,7 +127,7 @@ namespace XML
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xml);
 
-            var extr = new ExtractValues(doc.DocumentElement);
+            var extr = new ExtractValues(doc);
             var res = extr.ExtractTextFromCodes(refCodes);
 
             if (res.Count == 0)
